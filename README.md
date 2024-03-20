@@ -1,5 +1,5 @@
 # EVM Crypto Brute Force
-This script is designed to automatically generate seed phrases, create wallets, and check balances for Ethereum, Binance Smart Chain (BSC), and Polygon (MATIC) networks. If a wallet with a non-zero balance is found, the wallet's information (address, mnemonic, private key, and balances) is logged and saved to a file named wallets.txt.
+This script is designed to automatically generate seed phrases and check balances for Ethereum, Binance Smart Chain (BSC), and Polygon (MATIC) networks. If a wallet with a non-zero balance is found, the wallet's information (address, mnemonic, private key, and balances) is logged and saved to a file named wallets.txt.
 
 ![Preview](https://github.com/cdw1p/evm-crypto-bruteforce/blob/main/preview.png?raw=true)
 
