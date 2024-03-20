@@ -61,8 +61,9 @@ function scrapeBlockscan(address, type = 'etherscan') {
       const balance = $('#ContentPlaceHolder1_divSummary > div.row.g-3.mb-4 > div:nth-child(1) > div > div > div:nth-child(3)').text()
       return balance.split('\n')[4]
     })
-    .catch(error => {
-      return false
+    .catch(async () => {
+      await delay(10000)
+      return '$0.00'
     })
 }
 
