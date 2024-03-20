@@ -59,7 +59,8 @@ function scrapeBlockscan(address, type = 'etherscan') {
     .then(response => {
       const $ = cheerio.load(response.data)
       const balance = $('#ContentPlaceHolder1_divSummary > div.row.g-3.mb-4 > div:nth-child(1) > div > div > div:nth-child(3)').text()
-      return balance.split('\n')[4]
+      const balanceResult = balance.split('\n')[4]
+      return balanceResult !== undefined ? balanceResult : '$0.00'
     })
     .catch(async () => {
       await delay(10000)
