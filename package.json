@@ -1,0 +1,29 @@
+{
+  "name": "evm-crypto-bruteforce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdw1p/evm-crypto-bruteforce.git"
+  },
+  "author": "cdw1p",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cdw1p/evm-crypto-bruteforce/issues"
+  },
+  "homepage": "https://github.com/cdw1p/evm-crypto-bruteforce#readme",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "bip39": "^3.1.0",
+    "cheerio": "^1.0.0-rc.12",
+    "colors": "^1.4.0",
+    "crypto": "^1.0.1",
+    "ethers": "^6.11.1",
+    "fs-extra": "^11.2.0",
+    "moment": "^2.30.1"
+  }
+}
