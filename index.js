@@ -13,6 +13,8 @@ require('colors')
  */
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
+console.clear();
+
 /**
  * Logs a message to the console with a timestamp.
  * @param {string} message - The message to be logged.
@@ -53,8 +55,8 @@ function generateSeedPhrase() {
  * @param {string} type - The type of address to scrape (e.g. 'eth
  * @returns {Promise<string|boolean>} - A promise that resolves to the balance as a string, or false if an error occurs.
  */
-function scrapeBlockscan(address, type = 'etherscan') {
-  const url = `https://${type}.com/address/${address}`
+function scrapeBlockscan(address, type = 'etherscan.io') {
+  const url = `https://${type}/address/${address}`
   return axios.get(url)
     .then(response => {
       const $ = cheerio.load(response.data)
@@ -63,7 +65,7 @@ function scrapeBlockscan(address, type = 'etherscan') {
       return balanceResult !== undefined ? balanceResult : '$0.00'
     })
     .catch(async () => {
-      await delay(10000)
+      await delay(50)
       return '$0.00'
     })
 }
@@ -80,9 +82,9 @@ async function runBruteforce() {
       const resSeedPhrase = generateSeedPhrase()
       const resEtherWallet = ethers.Wallet.fromPhrase(resSeedPhrase)
       const [resEthBalance, resBnbBalance, resMaticBalance] = await Promise.all([
-        scrapeBlockscan(resEtherWallet.address, 'etherscan'),
-        scrapeBlockscan(resEtherWallet.address, 'bscscan'),
-        scrapeBlockscan(resEtherWallet.address, 'polygonscan')
+        scrapeBlockscan(resEtherWallet.address, 'etherscan.io'),
+        scrapeBlockscan(resEtherWallet.address, 'bscscan.com'),
+        scrapeBlockscan(resEtherWallet.address, 'polygonscan.com')
       ])
       logger(`👾 Address: ${resEtherWallet.address}`, 'info')
       logger(`💬 Mnemonic: ${resEtherWallet.mnemonic.phrase}`, 'info')
@@ -96,7 +98,7 @@ async function runBruteforce() {
       } else {
         logger(`👎 No luck this time.`, 'warning')
       }
-      await delay(1000)
+      await delay(50)
     } catch (error) {
       logger(`An error occurred: ${error.message}`, 'error')
     }
